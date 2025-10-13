@@ -1,0 +1,35 @@
+? Tulichowasilisha SCOPI:
+Kama chapter tulitoa mpango wa website yenye:
+
+Vifaa vya masomo (notes, past papers, utafiti).
+
+Taarifa na matangazo ya wanafunzi.
+
+Nafasi za scholarship, mikutano na exchange.
+
+Ripoti za shughuli za kijamii na kujitolea.
+
+Nyaraka za uongozi na kalenda ya matukio.
+Pia tumeweka utaratibu wa ufuatiliaji kupitia kamati ya maudhui, matumizi ya analytics, na mfumo wa handover kila uongozi mpya.
+
+
+🔹 Maelekezo kutoka SCOPI:
+
+1. Website iwe na logo mbili (TAMSA national na UDOM chapter).
+
+
+2. Itumie TAMSA brand colors.
+
+
+3. Kwenye footer tuweke link ya tamsatanzania.org.
+
+
+4. SCOPI wamesema wako tayari kutupatia subdomain (mfano: udom.tamsatanzania.org) pindi tutakapokuwa tayari kulounch.
+
+
+
+📌 Kwa sasa tupo hatua nzuri ya maandalizi na tunahitaji kupanga muda wa kulounch rasmi ili tuwasilishe ombi la subdomain.
+
+Kwa heshima,
+Raphael Madata
+Makamu Mwenyekiti, TAMSA UDOM
