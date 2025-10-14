@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+input{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+a{
+    text-decoration: none;
+    margin: 1rem 0.5rem;
+}
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+.error {
+    color: red;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Login</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="login" method="POST">
+            <input type="password" name="password" placeholder="Admin Password" required>
+            <a href="#">Forgot password?</a>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

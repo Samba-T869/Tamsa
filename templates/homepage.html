@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAMSA UDOM</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  /* Global Styles */
+        :root {
+            --primary: rgba(250,250,250,0.7);
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --unyama: rgba(0,0,0,0.1);
+            --denim: #1a6ac3;
+            --bay: #213874;
+            --squash: #f3ab1b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            width: 100%;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--light);
+            color: var(--denim);
+            padding: 1rem 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        i {
+            cursor: pointer;
+            font-size: 1.8rem;
+           margin-right: 10px;
+           
+        }
+        .logo img{
+            margin: 0 10px 0 0;
+            width: 50px;
+            height: 50px;
+        }
+    .nav-links{
+        background-color: var(--primary);
+        display: none;
+        box-shadow: 0 0 10px 0 var(--unyama);
+    }
+    .nav-links.show{
+        display: block;
+        animation: fadeIn .5s ease;
+    }
+        nav {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            margin: 1.2rem 0  1.2rem 1.5rem;
+        }
+        
+        nav a {
+            font-size: 1.2rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            
+            padding: 10px 8px;
+            transition: color 0.3s;
+            border-bottom: 1px solid var(--unyama);
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+  
+     .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Main Content Styles */
+        main {
+            min-height: calc(100vh - 140px);
+            padding: 2rem 1rem;
+        }
+        
+        .page {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+        }
+    
+    .hero {
+            background: linear-gradient(45deg, rgba(0,60,250,0.3), rgba(60,0,250,0.2));
+            background-size: cover;
+            background-repeat: no-repeat;
+            /*filter: opacity(0.5);*/
+            padding: 3rem 1.2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--bay);
+        }
+        
+        .hero p {
+            text-align: left;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--squash);
+        }
+    
+        .hero img{
+            width: 100%;
+            height: auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--bay);
+            margin-bottom: 1rem;
+        }
+    
+    .feature-card img{
+        width: 100%;
+        height: auto;
+    }
+    
+    /* Footer Styles */
+        footer {
+            background: var(--bay);
+            color: white;
+            padding: 2rem 1.8rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin: 1rem 0 0.6rem 0;
+            color: var(--squash);
+        }
+        
+    .footer-section p{
+        color: var(--primary);
+    }
+    
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul li a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section ul  li a i{
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+    
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+        
+    .nii{
+        margin: 1.5rem 0 0 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+    .nii i{
+        margin: 0 1rem;
+        font-size: 2rem;
+        padding: 3px;
+    }
+    
+    .nii i:hover{
+        color: var(--secondary);
+    }
+    
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    .copyright p{
+        font-size: 1rem;
+        color: var(--primary);
+    }
+    .copyright p a{
+        color: var(--primary);
+        font-size: 1.1rem;
+    }
+    .copyright p a:hover{
+        color: var(--secondary);
+        text-decoration: none;
+    }
+    
+    /*Animation*/
+    @keyframes fadeIn{
+        0%{filter:opacity(0); transform: translateX(-15px); transform: translateY(10px)}
+        100%{filter:opacity(1); transform: translateX(0px); transform: translateY(0px)}
+    }
+    
+    /* Small devices (landscape phones, 576px and up) */
+ @media (min-width: 576px) {
+    body {
+        margin: 0 auto;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+    
+    .features {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .header-container {
+        padding: 0 1.5rem;
+    }
+    
+    .nav-links {
+        display: flex !important;
+        background: transparent;
+        box-shadow: none;
+    }
+    
+    .nav-links.show {
+        display: flex !important;
+    }
+    
+    nav {
+        flex-direction: row;
+        margin: 0;
+        gap: 1.5rem;
+    }
+    
+    nav a {
+        border-bottom: none;
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .fa-bars {
+        display: none;
+    }
+    
+    main {
+        padding: 2rem 1.5rem;
+    }
+    
+    .hero {
+        padding: 4rem 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+    }
+    .nii {
+        margin: 1rem 0 0 0;
+    }
+}
+     
+    /* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .header-container {
+        padding: 0 2rem;
+    }
+    .logo {
+        font-size: 2rem;
+    }
+    .logo img {
+        width: 60px;
+        height: 60px;
+    }
+    nav a {
+        font-size: 1.2rem;
+    }
+    main {
+        padding: 3rem 2rem;
+    }
+    .hero {
+        padding: 5rem 3rem;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .hero p {
+        font-size: 1.5rem;
+    }
+    .features {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+    .feature-card {
+        padding: 2rem;
+    }
+    footer {
+        padding: 3rem 2rem;
+    }
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+     body {
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .header-container {
+        padding: 0;
+    }
+    main {
+        padding: 3rem 0;
+    }
+    .hero {
+        border-radius: 12px;
+    }
+    .feature-card {
+        padding: 2.5rem;
+    }
+  }
+    
+    /* Small mobile devices (320px - 575px) */
+  @media (max-width: 575px) {
+    .header-container {
+        padding: 0 0.5rem;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .logo img {
+        width: 40px;
+        height: 40px;
+        margin-right: 8px;
+    }
+    i.fa-bars {
+        font-size: 1.5rem;
+    }
+    main {
+        padding: 1rem 0.5rem;
+        min-height: calc(100vh - 120px);
+    }
+    .hero {
+        padding: 2rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    .feature-card {
+        padding: 1.2rem;
+    }
+    footer {
+        padding: 1.5rem 1rem;
+        margin-top: 1.5rem;
+    }
+    .footer-section h3 {
+        font-size: 1.2rem;
+    }
+    .footer-section ul li {
+        font-size: 1rem;
+    }
+    .nii {
+        margin: 1rem 0 0 0;
+    }
+    .nii i {
+        font-size: 1.5rem;
+        margin: 0 0.5rem;
+    }
+    .copyright p {
+        font-size: 0.9rem;
+     }
+  }
+
+   /* Very small devices (max-width: 320px) */
+   @media (max-width: 320px) {
+      .logo {
+        font-size: 1.3rem;
+    }
+    
+    .logo img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    nav a {
+        font-size: 1.1rem;
+        padding: 8px 6px;
+     }
+  }
+    
+    /* Print styles */
+  @media print {
+    .fa-bars,
+    .nav-links,
+    footer {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+        max-width: 100%;
+    }
+    
+    .hero {
+        background: none !important;
+        border: 1px solid #ccc;
+    }
+    
+    .feature-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* High-resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Orientation specific styles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .nav-links {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    .hero {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .feature-card:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+    
+    .feature-card {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+    }
+    
+    nav a {
+        color: #f0f0f0;
+    }
+}
+  </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="logo"> TAMSA UDOM
+            </div>
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    
+    
+  
+  <div class="nav-links">
+    <nav>
+                    <a href="#" class="nav-link" data-page="home">Home</a>
+                    <a href="/documents" class="nav-link" data-page="documents">Documents</a>
+                    <a href="/opportunities" class="nav-link" data-page="opportunities">Announcements</a>
+                    <a href="/activities" class="nav-link" data-page="activities">Activities</a>
+                    <a href="/leadership" class="nav-link" data-page="leadership">Leadership</a>
+                    <a href="/register" class="nav-link" data-page="register">Register</a>
+                    <a href="/login" class="nav-link" data-page="login">Login</a>
+      </nav>
+  </div>
+  
+    <main>
+            <div id="home-page" class="page">
+                <div class="hero">
+                    <h1>Welcome to Tamsa Udom</h1>
+                    <p>Your comprehensive educational platform for resources, opportunities, and community engagement</p>
+                    <img src="{{url_for('static', filename='8.jpg')}}" alt="Tamsa family">
+                </div>
+                
+                <h2 class="page-title">What We Offer</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>Document Library</h3>
+                        <p>Access PDF documents, research papers, notes, and past papers shared by the community.</p>
+                        <img src="{{url_for('static', filename='15.jpg')}}" alt="A photo of Udom Tamsa member">
+                    </div>
+                    <div class="feature-card">
+                        <h3>Opportunities</h3>
+                        <p>Find meetings, scholarships, and other educational opportunities to advance your career.</p>
+                        <img src="{{url_for('static', filename='18.jpg')}}" alt="Tamsa image">
+                    </div>
+                    <div class="feature-card">
+                        <h3>Social Activities</h3>
+                        <p>Stay updated on social activities, charity events, and community engagement initiatives.</p>
+                        <img src="{{url_for('static', filename='9.jpg')}}" alt="A social activities event">
+                    </div>
+                    <div class="feature-card">
+                        <h3>Leadership Updates</h3>
+                        <p>Get the latest announcements, documents, and event schedules from Tamsa leadership.</p>
+                        <img src="{{url_for('static', filename='19.jpg')}}" alt="Tamsa leaders">
+                    </div>
+                </div>
+            </div>
+    </main>
+    
+  <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us At</h3>
+                    
+                    <ul>
+                        <li><a href="mailto:tamsaudom@gmail.com"><i class="fas fa-envelope"></i>tamsaudom@gmail.com</a></li>
+                        <li><a><i class="fas fa-phone"></i>+255752071727</a></li>
+                        <li><a><i class="fas fa-phone"></i>+255695791265</a></li>
+                        
+                        <div class="nii">
+                        <li><a href="https://x.com/tamsa_udom?t=Bcwrpd5Ebe4j0FBdapMEzg&s=09"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/tamsa.udom?igsh=NTc4MTIwNjQ2YQ=="><i class="fab fa-instagram"></i></a></li>
+                        </div>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tamsa Tanzania</h3>
+                    <ul>
+                        <li><a href="mailto:tamsa-tanzania@ifmsa.org"><i class="fas fa-envelope"></i>tamsa-tanzania@ifmsa.org</a></li>
+                        <li><a href="https://tamsatanzania.org"><i class="fas fa-link"></i>Tamsa Tanzania</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Tamsa Udom. All rights reserved.
+                 Developed by <a href="#">ngalulaTech</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+    const hamburger = document.querySelector('.fa-bars');
+    const navlinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        navlinks.classList.toggle('show');
+    });
+    
+     document.addEventListener('click', (e) => {
+      if (navlinks.classList.contains('show') && 
+          e.target !== hamburger && 
+          !navlinks.contains(e.target)) {
+        navlinks.classList.remove('show');
+      }
+    });
+    
+    navlinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navlinks.classList.remove('show');
+      });
+    });
+    </script>
+</body>
+</html>
