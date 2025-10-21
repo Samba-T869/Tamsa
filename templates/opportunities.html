@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANNOUNCEMENTS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  /* Global Styles */
+        :root {
+            --primary: rgba(250,250,250,0.7);
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --denim: #1a6ac3;
+            --bay: #213874;
+            --unyama: rgba(0,0,0,0.1);
+            --squash: #f3ab1b;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            max-width: 1200px;
+            width: 100%;
+            height: auto;
+        }
+         
+    header{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 15px;
+        display: flex;
+        background: var(--white);
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 0 10px var(--denim);
+        z-index: 1000;
+    }
+    header img{
+        width: 50px;
+        height: 50px;
+        color: var(--denim);
+    }
+    header h1{
+        font-size: 2.0rem;
+        color: var(--denim);
+    }
+    header i{
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 2px;
+        color: var(--denim);
+    }
+    .nav-links{
+        position: fixed;
+        top: 90px;
+        background-color: var(--white);
+        display: none;
+        border-radius: 0 0 7px 0;
+        box-shadow: 3px 3px 5px -2px var(--denim);
+        z-index: 1000;
+    }
+    .nav-links.show{
+        display: block;
+        animation: fadeIn .5s ease;
+    }
+        nav {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            margin: 1.2rem 0  1.2rem 1.5rem;
+        }
+        
+        nav a {
+            font-size: 1.2rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 8px;
+            transition: color 0.3s;
+            border-bottom: 1px solid var(--unyama);
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+    
+    main{
+        margin: 20vh 0 0 0;
+        padding: 20px 15px;
+    }
+    
+     .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    
+    .page-title {
+        color: var(--denim);
+        font-size: 2rem;
+    }
+    
+    .btn {
+        background: var(--denim);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: background 0.3s;
+    }
+    
+    .btn:hover {
+        background: var(--bay);
+    }
+    
+    .btn-danger {
+        background: var(--accent);
+    }
+    
+    .btn-danger:hover {
+        background: #c0392b;
+    }
+    
+    .filter-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        background: var(--light);
+        border: 1px solid #ddd;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+     .filter-btn.active {
+        background: var(--denim);
+        color: white;
+    }
+    
+        .opportunities-list{
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+       
+    
+    .opportunity-link {
+      position: relative;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--denim);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+  }
+  
+    .opportunity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .opportunity-title {
+      color: var(--denim);
+      margin: 0;
+      font-size: 1.2rem;
+  }
+    
+  .opportunity-link.announcement {
+      border-left-color: var(--squash);
+  }
+  
+  .opportunity-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+    
+    .opportunity-link.announcement .opportunity-title {
+      color: var(--squash);
+  }
+        .opportunity-meta{
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+    
+    .new-indicator {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
+    z-index: 10;
+}
+    
+        .type-badge {
+        background: var(--denim);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+    
+    .announcement .type-badge {
+        background: var(--squash);
+    }
+    
+    .opportunity-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: var(--light);
+      margin-top: 1rem;
+      border-radius: 4px;
+  }
+  
+  .opportunity-details.expanded {
+      max-height: 1000px;
+      padding: 1.5rem;
+  }
+    
+    .opportunity-media {
+            margin: 1rem 0;
+            max-width: 100%;
+        }
+        
+        .opportunity-media img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .opportunity-media video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    .date-info {
+        background: var(--light);
+        padding: 0.5rem;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        font-weight: 500;
+    }
+    
+    .deadline {
+        color: var(--accent);
+    }
+    
+    .event-date {
+        color: var(--success);
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: #777;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #ddd;
+    }
+    
+    .flash-messages {
+        margin-bottom: 1rem;
+    }
+    
+    .flash-message {
+        padding: 0.75rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .flash-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    
+    .flash-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+    
+    .delete-form {
+        display: inline;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn{
+        from{filter: opacity(0); transform: translateY(-10px)}
+        to{filter: opacity(1); transform: translateY(0px)}
+    }
+    
+    @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+  </style>
+</head>
+<body>
+    <header>
+        <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="Tamsa logo">
+        <h1>TAMSA UDOM</h1>
+        <i class="fas fa-bars"></i>
+    </header>
+    
+    <div class="nav-links">
+    <nav>
+                    <a href="/" class="nav-link" data-page="home">Home</a>
+                    <a href="/documents" class="nav-link" data-page="documents">Documents</a>
+                    <a href="/opportunities" class="nav-link" data-page="opportunities">Announcements</a>
+                    <a href="/activities" class="nav-link" data-page="activities">Activities</a>
+                    <a href="/leadership" class="nav-link" data-page="leadership">Leadership</a>
+      </nav>
+  </div>
+    
+    <main>
+            <div id="opportunities-page" class="page">
+                <div class="page-header">
+                <h1 class="page-title">Announcements</h1>
+            </div>
+                
+              <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="opportunity">Opportunities</button>
+                <button class="filter-btn" data-filter="announcement">Announcements</button>
+            </div>
+                
+                
+          <div class="opportunities-list">
+    {% if opportunities %}
+        {% for opp in opportunities %}
+            <a href="/opportunity/{{ opp.id }}" class="opportunity-link {{ opp.type }}">
+                <div class="opportunity-header">
+                    <h3 class="opportunity-title">{{ opp.title }}</h3>
+                    <span class="type-badge">
+                        {% if opp.type == 'opportunity' %}
+                            Opportunity
+                        {% else %}
+                            Announcement
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="opportunity-meta">
+                    <span> {{ opp.created_date[:10] }}</span>
+                    <!--{% if opp.type == 'opportunity' and opp.deadline %}
+                        <span><i class="fas fa-clock"></i> Deadline: {{ opp.deadline[:10] }}</span>
+                    {% endif %}
+                    
+                    {% if opp.type == 'announcement' and opp.event_date %}
+                        <span><i class="fas fa-calendar-alt"></i> Event: {{ opp.event_date[:10] }}</span>
+                    {% endif %}-->
+                </div>
+            </a>
+        {% endfor %}
+              
+    {% else %}
+        <div class="empty-state">
+            <i class="fas fa-inbox"></i>
+            <h3>No opportunities or announcements yet</h3>
+            <p>Check back later for new updates</p>
+        </div>
+              
+    {% endif %}
+</div>      
+    </main>
+    
+    <script>
+    const hamburger = document.querySelector('.fa-bars');
+    const navlinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', ()=>{
+        navlinks.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (navlinks.classList.contains('show') && 
+          e.target !== hamburger && 
+          !navlinks.contains(e.target)) {
+        navlinks.classList.remove('show');
+      }
+    });
+    
+    navlinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navlinks.classList.remove('show');
+      });
+    });
+    
+    // Function to mark the latest post as "new"
+    function markLatestPost() {
+        const opportunityLinks = document.querySelectorAll('.opportunity-link');
+        
+        if (opportunityLinks.length === 0) return;
+        
+        // Find the latest post based on date
+        let latestPost = null;
+        let latestDate = new Date(0); // Start with earliest possible date
+        
+        opportunityLinks.forEach(link => {
+            const dateElement = link.querySelector('.opportunity-meta span');
+            if (dateElement) {
+                const dateText = dateElement.textContent.trim();
+                const postDate = new Date(dateText);
+                
+                if (postDate > latestDate) {
+                    latestDate = postDate;
+                    latestPost = link;
+                }
+            }
+        });
+        
+        // Add "new" indicator to the latest post
+        if (latestPost) {
+            const newIndicator = document.createElement('div');
+            newIndicator.className = 'new-indicator';
+            newIndicator.innerHTML = '<i class="fas fa-star"></i>';
+            newIndicator.title = 'Latest Post';
+            latestPost.style.position = 'relative';
+            latestPost.appendChild(newIndicator);
+            
+            // Optional: Also add a visual class for styling
+            latestPost.classList.add('latest-post');
+        }
+    }
+            
+        // Enhanced Filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const opportunityLinks = document.querySelectorAll('.opportunity-link');
+    const emptyState = document.querySelector('.empty-state');
+    
+    markLatestPost();
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            let visibleCount = 0;
+            
+            // Filter opportunity links
+            opportunityLinks.forEach(link => {
+                const linkType = link.classList.contains('announcement') ? 'announcement' : 'opportunity';
+                
+                if (filter === 'all' || linkType === filter) {
+                    link.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+            
+            // Show/hide empty state based on visible items
+            if (emptyState) {
+                if (visibleCount === 0 && opportunityLinks.length > 0) {
+                    emptyState.style.display = 'block';
+                } else {
+                    emptyState.style.display = 'none';
+                }
+            }
+        });
+    });
+});
+            // Format dates nicely
+            document.querySelectorAll('.date-info').forEach(el => {
+                const text = el.textContent;
+                if (text.includes('20')) {
+                    const datePart = text.split(': ')[1];
+                    if (datePart) {
+                        try {
+                            const date = new Date(datePart);
+                            if (!isNaN(date)) {
+                                const formatted = date.toLocaleString();
+                                el.innerHTML = el.innerHTML.replace(datePart, formatted);
+                            }
+                        } catch (e) {
+                            console.log('Date formatting error:', e);
+                        }
+                    }
+                }
+            });
+            
+    </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHANGE ADMIN PASSWORD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body{
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  .header {
+    background: #2c3e50;
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .form-container {
+    padding: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  .btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: #2980b9;
+  }
+  
+  .back-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .back-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .flash-messages {
+    margin-bottom: 20px;
+  }
+  
+  .flash-success {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #c3e6cb;
+    margin-bottom: 15px;
+  }
+  
+  .flash-error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 15px;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="Tamsa Logo">
+      </div>
+      <h1>Change Admin Password</h1>
+      <p>Update your administrator password</p>
+    </div>
+    
+    <div class="form-container">
+      <!-- Flash Messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-messages">
+            {% for category, message in messages %}
+              <div class="flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      
+      <form method="POST" action="{{ url_for('change_admin_password') }}">
+        <div class="form-group">
+          <label for="old_password">
+            <i class="fas fa-lock"></i> Current Password
+          </label>
+          <input type="password" id="old_password" name="old_password" placeholder="Enter current password" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="new_password">
+            <i class="fas fa-key"></i> New Password
+          </label>
+          <input type="password" id="new_password" name="new_password" placeholder="Enter new password" required minlength="6">
+        </div>
+        
+        <div class="form-group">
+          <label for="confirm_password">
+            <i class="fas fa-check-circle"></i> Confirm New Password
+          </label>
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm new password" required minlength="6">
+        </div>
+        
+        <button type="submit" class="btn">
+          <i class="fas fa-sync-alt"></i> Change Password
+        </button>
+      </form>
+      
+      <div class="back-link">
+        <a href="{{ url_for('admin_dashboard') }}">
+          <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  const new = document.querySelector('#new');
+  const confirm = document.querySelector('#confirm');
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const newPassword = document.getElementById('new_password');
+    const confirmPassword = document.getElementById('confirm_password');
+    const form = document.querySelector('form');
+    
+    function validatePasswords() {
+      if (newPassword.value !== confirmPassword.value) {
+        confirmPassword.setCustomValidity('Passwords do not match');
+      } else {
+        confirmPassword.setCustomValidity('');
+      }
+    }
+    
+    newPassword.addEventListener('input', validatePasswords);
+    confirmPassword.addEventListener('input', validatePasswords);
+    
+    form.addEventListener('submit', function(e) {
+      validatePasswords();
+      if (!form.checkValidity()) {
+        e.preventDefault();
+      }
+    });
+  });
+  </script>
+</body>
+</html>

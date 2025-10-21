@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAMSA LEADERS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --unyama: rgba(0,0,0,0.1);
+            --denim: #1a6ac3;
+            --bay: #213874;
+            --squash: #f3ab1b;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+    header{
+           position: fixed;
+           width: 100%;
+           top: 0;
+           right: 0;
+           left: 0;
+           z-index: 1000;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 20px 15px;
+           background: var(--white);
+           box-shadow: 0 0 10px var(--bay);
+       }
+    header img{
+        width: 50px;
+        height: 50px;
+    }
+    header h1{
+        font-size: 2.0rem;
+        color: var(--bay);
+    }
+    header i{
+        color: var(--bay);
+        font-size: 1.8rem;
+        padding: 2px;
+        cursor: pointer;
+    }
+    
+    .nav-links{
+        position: fixed;
+        top: 90px;
+        left: 0;
+        border-radius: 0 0 7px 0;
+        background-color: var(--white);
+        display: none;
+        box-shadow: 3px 3px 5px -2px var(--squash);
+        z-index: 1000;
+    }
+    .nav-links.show{
+        display: block;
+        animation: fadeIn .5s ease;
+    }
+        nav {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            margin: 1.2rem 0  1.2rem 1.5rem;
+        }
+        
+        nav a {
+            font-size: 1.2rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 8px;
+            transition: color 0.3s;
+            border-bottom: 1px solid var(--unyama);
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+    
+        main {
+            min-height: calc(100vh - 140px);
+            padding: 2rem 1rem;
+            margin: 90px 0 0 0;
+        }
+        
+        .page {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        
+        .page-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+  
+        .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--secondary);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+        background-color: var(--primary);
+    }
+    
+    .btn-danger {
+        background-color: var(--accent);
+    }
+    
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+    
+    .leaders-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .leader-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .leader-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .leader-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    
+    .leader-info {
+        padding: 1.5rem;
+    }
+    
+    .leader-name {
+        color: var(--primary);
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .leader-position {
+        color: var(--secondary);
+        font-weight: bold;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .leader-bio {
+        color: #666;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+    
+    .delete-form {
+        margin-top: 1rem;
+    }
+    
+    .no-leaders {
+        text-align: center;
+        padding: 2rem;
+        color: #777;
+        font-style: italic;
+    }
+    
+    .flash-messages {
+        margin-bottom: 1.5rem;
+    }
+    
+    .flash-message {
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+    }
+    
+    .flash-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    
+    .flash-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+    <header>
+       <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="Tamsa logo">
+        <h1>TAMSA UDOM</h1>
+        <i class="fas fa-bars"></i>      
+    </header>
+    
+    <div class="nav-links">
+    <nav>
+                    <a href="/" class="nav-link" data-page="home">Home</a>
+                    <a href="/documents" class="nav-link" data-page="documents">Documents</a>
+                    <a href="/opportunities" class="nav-link" data-page="opportunities">Announcements</a>
+                    <a href="/activities" class="nav-link" data-page="activities">Activities</a>
+                    <a href="/leadership" class="nav-link" data-page="leadership">Leadership</a>
+      </nav>
+  </div>
+    
+    <main>
+            <div id="leadership-page" class="page">
+                <div class="container">
+                <h1 class="page-title">Tamsa Leaders</h1>
+                
+                
+                {% if leaders %}
+                <div class="leaders-grid">
+                    {% for leader in leaders %}
+                    <div class="leader-card">
+                        <img src="{{ leader.picture_url }}" alt="{{ leader.name }}" class="leader-image">
+                        <div class="leader-info">
+                            <h3 class="leader-name">{{ leader.name }}</h3>
+                            <div class="leader-position">{{ leader.position }}</div>
+                            {% if leader.bio %}
+                            <p class="leader-bio">{{ leader.bio }}</p>
+                        {% endif %}
+                            <form action="/leadership/delete/{{ leader.id }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure you want to delete this leader?');">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="no-leaders">
+                    <p>No leaders have been added yet.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    
+    <script>
+    const hamburger = document.querySelector('.fa-bars');
+    const navlinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        navlinks.classList.toggle('show');
+    });
+    
+     document.addEventListener('click', (e) => {
+      if (navlinks.classList.contains('show') && 
+          e.target !== hamburger && 
+          !navlinks.contains(e.target)) {
+        navlinks.classList.remove('show');
+      }
+    });
+    
+    navlinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navlinks.classList.remove('show');
+      });
+    });
+    </script>
+</body>
+</html>

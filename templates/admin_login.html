@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+    .int{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .int img{
+        width: 80%;
+        height: auto;
+    }
+    
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+input{
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+a{
+    text-decoration: none;
+    margin: 1rem 0.5rem;
+}
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+.flash-message {
+    font-weight: bold;
+}
+    .flash-success {
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        
+        /*background-color: #d4edda;*/
+        color: rgba(60,255,30,0.6);
+       /* border: 1px solid #00ff00;*/
+    }
+    
+    .flash-error {
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+       /* padding: 0.75rem 1rem;
+        background-color: #f8d7da;*/
+        color: #ff0000;
+        /*border: 1px solid #ff0000;*/
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="int">
+        <h1>Admin Login</h1>
+        <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="Tamsa logo">
+        </div>
+        <!-- Flash Messages -->
+                <div class="flash-messages">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="flash-message flash-{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+        
+        <form action="login" method="POST">
+            <input type="password" name="password" placeholder="Admin Password" required>
+            <a href="#">Forgot password?</a>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <script>
+    // Auto-dismiss flash messages after 3 seconds
+   document.addEventListener('DOMContentLoaded', function() {
+    const flashMessages = document.querySelectorAll('.flash-message');
+    
+    flashMessages.forEach(function(message) {
+        setTimeout(function() {
+            message.style.transition = 'opacity 0.5s ease';
+            message.style.opacity = '0';
+            
+            // Remove from DOM after fade out
+            setTimeout(function() {
+                if (message.parentNode) {
+                    message.parentNode.removeChild(message);
+                }
+            }, 500);
+            
+        }, 2000);
+    });
+});
+    </script>
+</body>
+</html>
