@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documents</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Metropolis:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+  /* Global Styles */
+        :root {
+            --primary: rgba(250,250,250,0.7);
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --bay: #213874;
+            --denim: #1a6ac3;
+            --squash: #f3ab1b;
+            --white: #ffffff;
+            --unyama: rgba(0,0,0,0.1);
+        }
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Metropolis', 'Montserrat',Tahoma, Geneva, Verdana, sans-serif;
+        }
+  body {
+            background-color: #fff;
+            color: var(--secondary);
+            line-height: 1.6;
+            font-family: 'Montserrat','Metropolis', sans-serif;
+        }
+  header{
+           position: fixed;
+           width: 100%;
+           top: 0;
+           right: 0;
+           left: 0;
+           z-index: 1000;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 20px 15px;
+           background: var(--white);
+           box-shadow: 0 0 10px var(--bay);
+       }
+    header img{
+        width: 50px;
+        height: 50px;
+    }
+    header h1{
+        font-size: 1.6rem;
+    }
+    header i{
+        font-size: 1.8rem;
+        padding: 2px;
+        cursor: pointer;
+    }
+  .nav-links{
+        position: fixed;
+        top: 90px;
+        left: 0;
+        border-radius: 0 0 7px 0;
+        background-color: var(--white);
+        display: none;
+        box-shadow: 3px 3px 5px -2px var(--squash);
+        z-index: 1000;
+    }
+    .nav-links.show{
+        display: block;
+        animation: fadeIn .5s ease;
+    }
+        nav {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            margin: 1.2rem 0  1.2rem 1.5rem;
+        }
+  nav a {
+            font-size: 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 8px;
+            transition: color 0.3s;
+            border-bottom: 1px solid var(--unyama);
+        }
+  nav a:hover {
+            color: var(--secondary);
+        }
+    main{
+        margin: 20vh 0 5vh;
+        padding: 20px 15px;
+    }
+    h1{
+        font-size: 1.7rem;
+    }
+    h3{
+        color: var(--bay);
+        font-size: 1.2rem;
+    }
+    p{
+        color: var(--bay);
+        font-size: 1rem;
+    }
+        .upload-section {
+            background: white;
+          padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+  .form-group {
+        margin-bottom: 1rem;
+    }
+  .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+  .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+  .btn {
+        color: var(--denim);
+        border: none;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.7rem;
+        transition: background 0.3s;
+    }
+  .btn:hover {
+        color: var(--bay);
+    }
+  .btn i{
+        margin-right: 4px;
+    }
+    .btn-danger {
+        background: var(--accent);
+    }
+  .btn-danger:hover {
+        background: #c0392b;
+    }
+  .search {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+  .searcharea {
+        width: 100%;
+        padding: 0.75rem;
+        padding-left: 2.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+  .fa-magnifying-glass {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+    }
+  .documents-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+  .document-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+  .document-card:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+         }
+  .document-info {
+            padding: 1rem;
+        }
+    .document-category{
+        background: var(--light);
+        border-radius: 4px;
+        padding: 2px 3px;
+        font-size: .8rem;
+    }
+  .huyu{
+            margin-bottom: 0.5rem;
+            color: var(--bay);
+            display: flex;
+      padding: 0px 3px;
+      justify-content: space-between;
+        }
+    .huyu h3{
+        font-size: 1rem;
+    }
+    .huyu span{
+        font-size: .6rem;
+    }
+  .bayu{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+      gap: 10px;
+  }
+    .search-icon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+  select{
+    width: 80%;
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    outline: none;
+      font-size: 1rem;
+      height: 40px;
+  }
+  #magni{
+      position: relative;
+            cursor: pointer;
+            color: var(--bay);
+            font-size: 1.2rem;
+      margin-right: 2rem;
+        }
+    
+    .fa-xmark{
+        font-size: 1.7rem;
+        position: absolute;
+        right: -6px;
+        top: -12px;
+        color: var(--bay);
+    }
+  .document-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+  .flash-messages {
+        margin-bottom: 1rem;
+    }
+  .flash-message {
+        padding: 0.75rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+  .flash-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+  .flash-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+    
+    .no-documents{
+        color: var(--warning);
+    }
+    
+  /* Animations */
+    @keyframes fadeIn{
+        from{filter: opacity(0); transform: translateY(-10px)}
+        to{filter: opacity(1); transform: translateY(0px)}
+    }
+  </style>
+</head>
+<body>
+    <header>
+       <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="Tamsa logo">
+        <h1>TAMSA UDOM</h1>
+        <i class="fas fa-bars"></i>      
+    </header>
+  
+  <div class="nav-links">
+    <nav>
+                    <a href="/" class="nav-link" data-page="home">Home</a>
+                    <a href="/documents" class="nav-link" data-page="documents">Documents</a>
+                    <a href="/opportunities" class="nav-link" data-page="opportunities">Announcements</a>
+                    <a href="/activities" class="nav-link" data-page="activities">Activities</a>
+                    <a href="/leadership" class="nav-link" data-page="leadership">Leadership</a>
+      </nav>
+  </div>
+  
+  <main>
+            <div id="documents-page" class="page">
+                
+                <h1 class="page-title">Academic documents</h1>
+                <p>Find various documents concerning Tamsa Udom, these includes uploaded research papers, academic past papers and study notes</p>
+              
+              <!-- Flash Messages -->
+            <div class="flash-messages">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+              
+              <h2>Available Documents</h2>
+              <div class="cate">
+                  <p>Select document category</p>
+                  
+               <div class="bayu">
+                <select class="category-filter">
+                  <option value="all">All</option>
+                  <option value="research">Research papers</option>
+                  <option value="notes">Study notes</option>
+                  <option value="past-papers">Past papers</option>
+                  <option value="other">Other</option>
+                </select>
+                   
+                <div class="search-icons">
+                <i class="fas fa-magnifying-glass" id="magni"></i>
+                
+                </div>
+                  </div>
+              </div>
+              
+                <div class="search" style="display:none">
+                <input class="searcharea" type="search" placeholder="Search document here..." id="search-input">
+                    <i class="fas fa-magnifying-glass"></i>
+                    <i class="fas fa-xmark" style="display:none"></i>
+                </div>
+              
+              <div class="documents-grid" id="documents-grid">
+                    {% for doc in documents %}
+                <div class="document-card" data-title="{{ doc.title.lower() }}" data-category="{{ doc.category }}">
+                    <div class="document-info">
+                        <span class="document-category">{{ doc.category|replace('-', ' ')|title }}</span>
+                      <div class="huyu">
+                        <h3>{{ doc.title }}</h3>
+                        <span>{{ doc.upload_date[:10] }}</span>
+                      </div>
+                        <a href="{{ doc.url }}" target="_blank" class="btn">
+                                <i class="fas fa-download"></i>View document
+                            </a>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+    </main>
+  
+  <script>
+    //DOM Contents
+    const docTitle = document.querySelector('#document-title');
+    const docCategory = document.querySelector('#document-category');
+    const doc = document.querySelector('#document-file');
+    const uploadBtn = document.querySelector('.btn');
+    const sarchie = document.querySelector('.search');
+    const toggleBtn = document.querySelector('#magni');
+    const removeBtn = document.querySelector('.fa-xmark');
+    const searchArea = document.querySelector('.searcharea');
+    const searchBtn = document.querySelector('.search .fa-magnifying-glass');
+    const hamburger = document.querySelector('.fa-bars');
+    const navlinks = document.querySelector('.nav-links');
+    const jspan = document.querySelectorAll('.document-category');
+    const categoryFilter = document.querySelector('.category-filter');
+  
+  hamburger.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        navlinks.classList.toggle('show');
+    });
+  
+  document.addEventListener('click', (e) => {
+      if (navlinks.classList.contains('show') && 
+          e.target !== hamburger && 
+          !navlinks.contains(e.target)) {
+        navlinks.classList.remove('show');
+      }
+    });
+  
+  navlinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+      navlinks.classList.remove('show');
+      });
+    });
+  
+  function toggleSearchBar() {
+    const isSearchVisible = sarchie.style.display === 'block';
+    
+    sarchie.style.display = isSearchVisible ? 'none' : 'block';
+    removeBtn.style.display = isSearchVisible ? 'none' : 'inline-block';
+    toggleBtn.style.display = isSearchVisible ? 'inline-block' : 'none';
+    
+    // Focus on search input when shown
+    if (!isSearchVisible) {
+        setTimeout(() => searchArea.focus(), 100);
+    }
+}
+
+toggleBtn.addEventListener('click', toggleSearchBar);
+removeBtn.addEventListener('click', toggleSearchBar);
+  
+  // Category filtering functionality - using select element
+categoryFilter.addEventListener('change', function() {
+    // Update active category
+    activeCategory = this.value;
+    
+    jspan.forEach(card => {
+    if(activeCategory !=='all'){
+        card.style.display ='none'
+    }else{
+        card.style.display ='block'
+    }
+    });
+    
+    // Apply filters
+    filterDocuments();
+});
+
+let activeCategory = 'all';
+
+// Search functionality
+document.getElementById('search-input').addEventListener('input', function() {
+    filterDocuments();
+});
+
+// Main filtering function
+function filterDocuments() {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const documentCards = document.querySelectorAll('.document-card');
+    let visibleCount = 0;
+    
+    documentCards.forEach(card => {
+        const title = card.getAttribute('data-title');
+        const category = card.getAttribute('data-category');
+        
+        // Check if card matches both category and search filters
+        const matchesCategory = activeCategory === 'all' || category === activeCategory;
+        const matchesSearch = title.includes(searchTerm);
+        
+        if (matchesCategory && matchesSearch) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // Show message if no documents match the filters
+    let noDocumentsMsg = document.querySelector('.no-documents');
+    if (visibleCount === 0) {
+        if (!noDocumentsMsg) {
+            noDocumentsMsg = document.createElement('div');
+            noDocumentsMsg.className = 'no-documents';
+            noDocumentsMsg.textContent = 'No documents found matching your criteria.';
+            document.getElementById('documents-grid').appendChild(noDocumentsMsg);
+        }
+    } else if (noDocumentsMsg) {
+        noDocumentsMsg.remove();
+    }
+}
+
+// Initialize the filter on page load
+filterDocuments();
+  </script>
+</body>
+</html>

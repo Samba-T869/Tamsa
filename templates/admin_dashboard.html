@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMIN DASHBOARD</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Metropolis:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --primary: #2c3e50;
+        --secondary: #3498db;
+        --accent: #e74c3c;
+        --light: #ecf0f1;
+        --dark: #2c3e50;
+        --success: #2ecc71;
+        --warning: #f39c12;
+        --bay: #213874;
+        --denim: #1a6ac3;
+        --squash: #f3ab1b;
+        --white: #ffffff;
+        --unyama: rgba(0,0,0,0.1);
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Metropolis', 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background-color: #f5f7fa;
+        color: var(--denim);
+        line-height: 1.6;
+        font-family: 'Metropolis', sans-serif;
+    }
+    
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 15px;
+        align-items: center;
+        background: var(--white);
+        color: var(--denim);
+        box-shadow: 0 0 10px 0 var(--denim);
+    }
+    
+    header img{
+        width: 50px;
+        height: 50px;
+    }
+    
+    header i{
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 2px;
+    }
+    .nav-links{
+        position: fixed;
+        top: 90px;
+        left: 0;
+        border-radius: 0 0 7px 0;
+        background-color: var(--white);
+        display: none;
+        box-shadow: 3px 3px 5px -2px var(--squash);
+        z-index: 1000;
+    }
+    .nav-links.show{
+        display: block;
+        animation: fadeIn .5s ease;
+    }
+        nav {
+            display: flex;
+            list-style: none;
+            flex-direction: column;
+            margin: 1.2rem 0  1.2rem 1.5rem;
+        }
+        
+        nav a {
+            font-size: 1.2rem;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 8px;
+            transition: color 0.3s;
+            border-bottom: 1px solid var(--unyama);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+    
+    main {
+        margin: 95px 0;
+        min-height: calc(100vh - 140px);
+        padding: 1.8rem 0;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .page-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+    
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: var(--secondary);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+        background-color: var(--primary);
+    }
+    
+    .btn-back {
+        background-color: #95a5a6;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-back:hover {
+        background-color: #7f8c8d;
+    }
+    
+    .form-container {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--primary);
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    input[type="file"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    #home-page p{
+        color: var(--squash);
+        font-size: 1.5rem;
+    }
+    #home-page a{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 5px 10px;
+        color: var(--squash);
+        text-decoration: none;
+        font-size: 1.5rem;
+        background: var(--bay);
+        border: none;
+        border-radius: 4px;
+    }
+    
+    #leadership-page p, #opportunities-page p{
+        color: var(--squash);
+    }
+    
+    .flash-messages {
+        margin-bottom: 1.5rem;
+    }
+    
+    .flash-message {
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+    }
+    
+    .flash-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    
+    .flash-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+  </style>
+ </head>
+<body>
+    <header>
+            <img src="{{url_for('static', filename='Tamsa logo.png')}}" alt="logo">
+            <h1> TAMSA UDOM</h1>
+            <i class="fas fa-bars"></i>
+    </header>
+    
+  <div class="nav-links">
+    <nav>
+                    <a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <a href="#" class="nav-link" data-page="documents">Documents</a>
+                    <a href="#" class="nav-link" data-page="opportunities">Announcements</a>
+                    <a href="#" class="nav-link" data-page="activities">Activities</a>
+                    <a href="#" class="nav-link" data-page="leadership">Leadership</a>
+      <a href="/actions">Actions</a>
+      <a href="/admin/change-password">Change password</a>
+      </nav>
+  </div>
+    
+    <main>
+        <div class="container">
+            
+            <h1 class="page-title">ADMIN DASHBOARD</h1>
+            
+            <!-- Flash Messages -->
+            <div class="flash-messages">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            
+            <div id="home-page" class="page active">
+                <h1>Hello admin</h1>
+                <p>Welcome to Tamsa Udom page. As an admin you can post announcements, activities, meeting updates and upload media to this website </p>
+                <a href="/admin/logout"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            
+            <div id="activities-page" class="page">
+             
+    <div class="activity-form">
+        <h2>Post Tamsa activity</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="form_type" value="activity">
+            <div class="form-group">
+                <label for="activity_title">Activity Title</label>
+                <input type="text" id="activity_title" name="activity_title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity_description">Description</label>
+                <textarea id="activity_description" name="activity_description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity_date">Date</label>
+                <input type="date" id="activity_date" name="activity_date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity_location">Location</label>
+                <input type="text" id="activity_location" name="activity_location" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity_media_file">Upload Media (optional)</label>
+                <input type="file" id="activity_media_file" name="activity_media_file" accept="image/*,video/*">
+            </div>
+            
+            <button type="submit" class="btn">Create Activity</button>
+        </form>
+    </div>
+</div>
+            
+            <div id="documents-page" class="page">
+                <div class="upload-section">
+        <h2><i class="fas fa-file"></i> Upload New Document</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="form_type" value="document">
+            <div class="form-group">
+                <label for="doc_title">Document Title</label>
+                <input type="text" id="doc_title" name="doc_title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="doc_category">Category</label>
+                <select id="doc_category" name="doc_category" required>
+                    <option value="">Select Category</option>
+                    <option value="research">Research Papers</option>
+                    <option value="notes">Study Notes</option>
+                    <option value="past-papers">Past Papers</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="doc_file"><i class="fas fa-plus"></i>Select PDF File</label>
+                <input type="file" id="doc_file" name="doc_file" accept=".pdf" required>
+            </div>
+            <button type="submit" class="btn">Upload Document</button>
+        </form>
+    </div>
+            </div>
+            
+            <div id="leadership-page" class="page">
+                <h1>Tamsa Udom Leaders</h1>
+                <p>Post and update current Tamsa Udom leaders with their names, position, description and picture</p>
+                <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="form_type" value="leader">
+        <div class="form-group">
+            <label for="leader_name">Full Name</label>
+            <input type="text" id="leader_name" name="leader_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="leader_position">Position</label>
+            <input type="text" id="leader_position" name="leader_position" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="leader_bio">Bio</label>
+            <textarea id="leader_bio" name="leader_bio"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="leader_picture">Profile Picture</label>
+            <input type="file" id="leader_picture" name="leader_picture" accept="image/*" required>
+            <small>Accepted formats: JPEG, PNG, GIF, WebP</small>
+        </div>
+        
+        <button type="submit" class="btn">
+            <i class="fas fa-save"></i> Add Leader
+        </button>
+    </form>
+            </div>
+            
+            <div id="opportunities-page" class="page">
+                <h1>Announcements</h1>
+                <p>Update Tamsa members on new announcements and opportunities</p>
+                
+              <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="form_type" value="opportunity">
+        <div class="form-group">
+            <label for="opp_type">Type</label>
+            <select id="opp_type" name="opp_type" required onchange="toggleTypeSpecific()">
+                <option value="">Select Type</option>
+                <option value="opportunity">Opportunity</option>
+                <option value="announcement">Announcement</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="opp_title">Title</label>
+            <input type="text" id="opp_title" name="opp_title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="opp_media">Upload Media(option)</label>
+            <input type="file" id="opp_media" name="opp_media" accept="image/*, video/*">
+        </div>     
+                  
+        <div class="form-group">
+            <label for="opp_description">Description</label>
+            <textarea id="opp_description" name="opp_description" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="opp_location">Location</label>
+            <input type="text" id="opp_location" name="opp_location">
+        </div>
+        
+        <!-- Opportunity Specific Fields -->
+        <div id="opportunity-fields" class="type-specific">
+            <div class="form-group">
+                <label for="opp_deadline">Deadline</label>
+                <input type="date" id="opp_deadline" name="opp_deadline">
+            </div>
+        </div>
+        
+        <!-- Announcement Specific Fields -->
+        <div id="announcement-fields" class="type-specific"  style="display: none;">
+            <div class="form-group">
+                <label for="opp_event_date">Event Date</label>
+                <input type="date" id="opp_event_date" name="opp_event_date">
+            </div>
+        </div>
+        
+        <button type="submit" class="btn">Post Opportunity/Announcement</button>
+    </form>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+    const hamburger = document.querySelector('.fa-bars');
+    const navlinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        navlinks.classList.toggle('show');
+    });
+    
+     document.addEventListener('click', (e) => {
+      if (navlinks.classList.contains('show') && 
+          e.target !== hamburger && 
+          !navlinks.contains(e.target)) {
+        navlinks.classList.remove('show');
+      }
+    });
+    
+    navlinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navlinks.classList.remove('show');
+      });
+    });
+        
+        // Page Navigation
+     document.addEventListener('DOMContentLoaded', function() {
+    // Navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('data-page');
+            
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            document.getElementById(`${targetPage}-page`).classList.add('active');
+           });
+         });
+      });        
+        
+        
+     function toggleTypeSpecific() {
+    const type = document.getElementById('opp_type').value;
+    const opportunityFields = document.getElementById('opportunity-fields');
+    const announcementFields = document.getElementById('announcement-fields');
+    
+    if (type === 'opportunity') {
+        opportunityFields.style.display = 'block';
+        announcementFields.style.display = 'none';
+    } else if (type === 'announcement') {
+        opportunityFields.style.display = 'none';
+        announcementFields.style.display = 'block';
+    } else {
+        opportunityFields.style.display = 'none';
+        announcementFields.style.display = 'none';
+    }
+}    
+        
+        // Set minimum date to today for date inputs
+    document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('activity_date').min = today;
+    
+    // File upload validation
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const maxSize = 50 * 1024 * 1024; // 50MB
+                if (file.size > maxSize) {
+                    alert('File size must be less than 50MB');
+                    e.target.value = '';
+                  }
+                 }
+               });
+             });
+         });
+
+        // Auto-dismiss flash messages after 3 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+        const flashMessages = document.querySelectorAll('.flash-message');
+    
+        flashMessages.forEach(function(message) {
+         setTimeout(function() {
+            message.style.transition = 'opacity 0.5s ease';
+            message.style.opacity = '0';
+            
+            // Remove from DOM after fade out
+            setTimeout(function() {
+                if (message.parentNode) {
+                    message.parentNode.removeChild(message);
+                }
+            }, 500);
+            
+         }, 3000);
+       });
+    });
+
+    toggleTypeSpecific();
+    </script>
+</body>
+</html>
